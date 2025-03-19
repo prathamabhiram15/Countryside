@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CountrySide</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <style>
+        body {
+            background: url('background.jpg') no-repeat center center fixed;
+            background-size: cover;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+        .content {
+            text-align: center;
+            color: white;
+            padding: 20px;
+        }
+        .form-container {
+            background: #d1a1a0;
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: left;
+        }
+        label {
+            display: block;
+            margin: 10px 0 5px;
+            font-weight: bold;
+        }
+        input[type="text"],
+        input[type="email"],
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 150px;
+            font-size: 16px;
+            margin-left: 220px;
+        }
+        .mandatory-field::after {
+            content: "*";
+            color: red;
+        }
+        .picklist {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        /* Success Message Styling */
+        .success-message {
+            display: none;
+            text-align: center;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+            max-width: 600px;
+            margin: 100px auto;
+        }
+        .success-message i {
+            font-size: 50px;
+            color: #4CAF50;
+        }
+        .success-message h2 {
+            color: #333;
+            margin-top: 10px;
+        }
+        .success-message p {
+            color: #555;
+            font-size: 18px;
+        }
+    </style>
+
+    <script>
+        function showSuccessScreen() {
+            // Hide form and show success message
+            document.getElementById("form-container").style.display = "none";
+            document.getElementById("success-message").style.display = "block";
+
+            // Reload the page after 3 seconds to reset the form
+            setTimeout(() => {
+                window.location.reload();
+            }, 3000);
+        }
+    </script>
+</head>
+<body>
+
+    <div class="content">
+        <h1>Welcome to Countryside!</h1>
+    </div>
+
+    <!-- Form Container -->
+    <div id="form-container" class="form-container">
+        <h2>Contact Us</h2>
+
+        <form id="leadForm" action="https://webto.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8" method="POST" onsubmit="showSuccessScreen()">
+            
+            <input type="hidden" name="oid" value="00DdN00000YtAhX">
+            <input type="hidden" name="retURL" value="http://127.0.0.1:5500/CountySide/WebToLead.html">
+            
+            <label for="first_name" class="mandatory-field">First Name</label>
+            <input id="first_name" maxlength="40" name="first_name" type="text" required>
+            
+            <label for="last_name" class="mandatory-field">Last Name</label>
+            <input id="last_name" maxlength="80" name="last_name" type="text" required>
+            
+            <label for="mobile" class="mandatory-field">Mobile</label>
+            <input id="mobile" maxlength="40" name="mobile" type="text" required>
+            
+            <label for="email" class="mandatory-field">Email</label>
+            <input id="email" maxlength="80" name="email" type="email" required>
+            
+            <label for="00NdN00000ApWph" class="mandatory-field">Travel Type</label>
+            <select id="00NdN00000ApWph" name="00NdN00000ApWph" class="picklist" required>
+                <option value="">--None--</option>
+                <option value="Domestic">Domestic</option>
+                <option value="International">International</option>
+            </select>
+            
+            <label for="company">Company</label>
+            <input id="company" maxlength="40" name="company" type="text">
+            
+            <label for="city">City</label>
+            <input id="city" maxlength="40" name="city" type="text">
+            
+            <label for="state">State/Province</label>
+            <input id="state" maxlength="20" name="state" type="text">
+            
+            <label for="country">Country</label>
+            <input id="country" maxlength="40" name="country" type="text">
+            
+            <input type="submit" value="Submit">
+            
+        </form>
+    </div>
+
+    <!-- Success Message Screen -->
+    <div id="success-message" class="success-message">
+        <i>✔</i>
+        <h2>Lead Successfully Created!</h2>
+        <p>Thank you for your submission. We will get back to you soon.</p>
+    </div>
+
+</body>
+</html>
